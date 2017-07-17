@@ -87,4 +87,25 @@
 		</div>
 	</div>
 </div>
-@endsection				
+@endsection
+
+@section('scripts')
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.pt-BR.min.js') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="data"]'); 
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            language: "pt-BR",
+        })
+    })
+</script>
+@endsection

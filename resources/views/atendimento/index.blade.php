@@ -32,6 +32,7 @@
 								<th>Data</th>
 								<th>Atualização</th>
 								<th>Usuário</th>
+								<th>Ações</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,20 +59,33 @@
 									@endif 
 								</td>
 								<td>{{ $atendimento->observacoes }}</td>
-								<td>{{ $atendimento->created_at->format('d/m/Y')  }}</td>
+								<td>{{ $atendimento->data  }}</td>
 								<td>{{ $atendimento->updated_at->format('d/m/Y')  }}</td>
 								<td>{{ $atendimento->user->name }}</td>
+								<td>
+									{{ Form::open(['route' => ['atendimento.excluir', $atendimento->id], 'method' => 'DELETE' ]) }}
+									{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>', array('class' => 'btn btn-danger btn-sm','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Deletar Atendimento', 'data-message' => 'Tem certeza de que deseja excluir esse atendimento?')) !!}
+									{!! Form::close() !!}
+								</td>
 							</tr>
 							@endforeach
 						</tbody>
 					</table>
 					{{ $atendimentos->links() }}
+
+					@include('partials.modal.modal-delete')
 				</div>
 				<div class="panel-footer">
-				<a href="#" title="Relatórios" class="btn btn-default btn-sm" >Relatórios</a>
+					<a href="#" title="Relatórios" class="btn btn-default btn-sm" >Relatórios</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@endsection
+
+@section('scripts')
+	
+	@include('partials.scripts.delete-modal-script')
+
 @endsection

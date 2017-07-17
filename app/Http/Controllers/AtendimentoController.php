@@ -104,5 +104,9 @@ class AtendimentoController extends Controller
     public function destroy($id)
     {
         //
+        $atendimento = Atendimento::findOrFail($id);
+        $atendimento->delete();
+
+        return redirect()->route('atendimento')->with('message', 'Registro removido com sucesso.');
     }
 }
