@@ -19,44 +19,44 @@
 				</div>
 				<div class="panel-body">
 					@include('partials.form-status')
-					{!! Form::open(['route' => 'atendimento.criar','method'=>'PUT']) !!}
+					{{ Form::open(['route' => ['atendimento.atualizar', $atendimento->id], 'method' => 'PUT' ]) }}
 					<div class="col-xs-12 col-md-6">
 						<div class="form-group">
 							<label>Solicitante</label>
-							<input class="form-control" placeholder="Solicitante" type="text"  name="solicitante" id="solicitante" />
+							<input class="form-control" placeholder="Solicitante" type="text"  name="solicitante" id="solicitante" value="{{ $atendimento->solicitante}}" />
 						</div>
 						<div class="row">
 							<div class="form-group col-xs-12 col-sm-4">
 								<label>Contrato</label>
-								<input class="form-control" placeholder="Contrato" type="text"  name="contrato" id="contrato" />
+								<input class="form-control" placeholder="Contrato" type="text"  name="contrato" id="contrato" value="{{ $atendimento->contrato}}" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label>Relato do Cliente</label>
-							<textarea class="form-control" placeholder="Relato do Cliente" rows="3" name="relato" id="relato"></textarea>
+							<textarea class="form-control" placeholder="Relato do Cliente" rows="3" name="relato" id="relato">{{ @$atendimento->relato}}</textarea>
 						</div>
 						<div class="form-group">
 							<label>Observações</label>
-							<textarea class="form-control" placeholder="Observações" rows="3" name="observacoes" id="observacoes"></textarea>
+							<textarea class="form-control" placeholder="Observações" rows="3" name="observacoes" id="observacoes">{{ @$atendimento->observacoes}}</textarea>
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-4">
 						<div class="row">
 							<div class="form-group col-xs-12 col-sm-6">
 								<label>O.S.</label>
-								<input class="form-control" placeholder="O.S." type="text"  name="os" id="os" />
+								<input class="form-control" placeholder="O.S." type="text"  name="os" id="os" value="{{ $atendimento->os}}" />
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-xs-12 col-sm-12">
 								<label>Nota</label>
-								{!! Form::select('nota', ['' => '-', '1' => 'Resolvido', '2' => 'Transferido', '3' => 'Pendente'], null, ['class' => 'form-control']) !!}
+								{!! Form::select('nota', ['' => '-', '1' => 'Resolvido', '2' => 'Transferido', '3' => 'Pendente'], $atendimento->nota, ['class' => 'form-control']) !!}
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-xs-12 col-sm-12">
 								<label>Status</label>
-								{!! Form::select('status', ['' => '-', '1' => 'Ativo', '0' => 'Bloqueado'], null, ['class' => 'form-control']) !!}
+								{!! Form::select('status', ['' => '-', '1' => 'Ativo', '0' => 'Bloqueado'], $atendimento->status, ['class' => 'form-control']) !!}
 							</div>
 						</div>
 						<div class="row">
@@ -67,7 +67,7 @@
 										<i class="fa fa-calendar">
 										</i>
 									</div>
-									<input class="form-control" id="data" name="data" placeholder="mm/dd/yyyy" type="text"/>
+									<input class="form-control" id="data" name="data" placeholder="mm/dd/yyyy" type="text" value="{{ $atendimento->data}}" />
 								</div>
 							</div>
 						</div>

@@ -81,6 +81,8 @@ class AtendimentoController extends Controller
     public function edit($id)
     {
         //
+        $atendimento = Atendimento::findOrFail($id);
+        return view('atendimento.edit', compact('atendimento'));
     }
 
     /**
@@ -93,6 +95,25 @@ class AtendimentoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'solicitante'     => 'required|max:255',
+            'nota'  => 'required|numeric|max:255'
+        ]);
+
+        $atendimento = Atendimento::find($id);
+        $atendimento->update([
+            'solicitante' => request('solicitante'),
+            'contrato' => request('contrato'),
+            'relato' => request('relato'),
+            'observacoes' => request('observacoes'),
+            'os' => request('os'),
+            'nota' => request('nota'),
+            'status' => request('status'),
+            'data' => request('data'),
+            'user_id'   => \Auth::user()->id,
+        ]);
+
+        return redirect()->route('atendimento')->with('message', 'O Atendimento foi atualizado com sucesso!');
     }
 
     /**

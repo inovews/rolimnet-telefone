@@ -22,6 +22,7 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
+								<th></th>
 								<th>Contrato</th>
 								<th>Solicitante</th>
 								<th>Relato</th>
@@ -36,8 +37,10 @@
 							</tr>
 						</thead>
 						<tbody>
+							@if($atendimentos->all())
 							@foreach ($atendimentos as $atendimento)
 							<tr>
+								<td><a class="btn btn-default btn-sm" href="{{ route('atendimento.editar' , $atendimento->id) }}" title=""><i class="fa fa-pencil" aria-hidden="true"></i></a></td> 
 								<td>{{ $atendimento->contrato }}</td>
 								<td>{{ $atendimento->solicitante }}</td>
 								<td>{{ $atendimento->relato }}</td>
@@ -69,6 +72,13 @@
 								</td>
 							</tr>
 							@endforeach
+							@else
+							<tr>
+								<td>
+									<span>Nenhum registro encontrado.</span>
+								</td>
+							</tr>
+							@endif
 						</tbody>
 					</table>
 					{{ $atendimentos->links() }}
@@ -85,7 +95,7 @@
 @endsection
 
 @section('scripts')
-	
-	@include('partials.scripts.delete-modal-script')
+
+@include('partials.scripts.delete-modal-script')
 
 @endsection

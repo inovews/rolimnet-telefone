@@ -81,9 +81,7 @@
 <!-- Scripts -->
 <!-- Include jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 @yield('scripts')
 </body>
 </html>
